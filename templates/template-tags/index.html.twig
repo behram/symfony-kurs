@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <hr>
+    hello test block<br>
+    {% include "template-tags/include-me.html.twig" %}<br>
+{% endblock %}
+
+{% block name %}
+    <hr>
+    Behram
+{% endblock %}
+
+{% block for_test %}
+    <hr>
+    {% for sehir in sehirler %}
+        {{ sehir }}<br>
+    {% endfor %}
+{% endblock %}
+
+{% block if_test %}
+    <hr>
+    {% if ifVar %}
+        true
+    {% else %}
+        false
+    {% endif %}
+
+    <br>
+    {% if definedCheck is defined %}
+        definedCheck: defined
+    {% else %}
+        definedCheck: not defined
+    {% endif %}
+
+    <br>
+    {% if emptyCheck is empty %}
+        emptyCheck: empty
+    {% else %}
+        emptyCheck: not empty
+    {% endif %}
+
+
+    <br>
+    {% if nullCheck is null %}
+        nullCheck: null
+    {% else %}
+        nullCheck: not null
+    {% endif %}
+
+    <br>
+    {% if 11 is even %}
+        evet even
+    {% else %}
+        hayır tek
+    {% endif %}
+
+    <br>
+    {% if iterableCheck is iterable %}
+        iterableCheck is iterable
+    {% else %}
+        iterableCheck is not iterable
+    {% endif %}
+{% endblock %}
+
+
+{% block set_test %}
+    <hr>
+    {% set isim = 'Behram' %}
+    {{ isim }}
+
+
+    <br>
+    {% spaceless %}
+        <div>
+            <h2>
+                <b>İsim</b>
+            </h2>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
