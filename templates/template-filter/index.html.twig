@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {# abs #}
+    {{ negativeVar|abs }}
+
+    <hr>
+    {{ sentence|capitalize }}
+
+    <hr>
+    {{ bugun|date('M D Y') }}
+
+    <hr>
+    {{ sehirler|first }}
+
+    <hr>
+    {{ sehirler|join('--') }}
+
+    <hr>
+    {{ sehirler|keys|join(',') }}
+
+    <hr>
+    {{ sehirler|last }}
+
+    <hr>
+    {{ sehirler|length }}
+
+    <hr>
+    {{ sentence|lower }}
+
+    <hr>
+    {{ sehirler|merge(['Urfa'])|join('--') }}
+
+    <hr>
+    {{ rawData|raw }}
+
+    <hr>
+    {{ sehirler|reverse|join('--') }}
+
+    <hr>
+    {{ sehirler|sort|join('--') }}
+
+    <hr>
+    {{ sentence|trim }}
+
+    <hr>
+    {{ sentence|upper }}
+
+    <hr>
+    {{ 'http://behram.org/?name=behram'|url_encode }}
+
+    <hr>
+    {{ sehirler|json_encode }}
+
+
+
+{% endblock %}
