@@ -18,7 +18,7 @@ class HelloCommand extends Command
             ->setHelp('php bin/console app:help veya a:h şeklinde çalıştırılabilir.')
             ->addArgument('name', InputArgument::REQUIRED, 'Kime selam vermemi istersin?')
             ->addArgument('soyad', InputArgument::OPTIONAL, 'Hangi soyad?')
-            ->addOption('yas', 'y', InputOption::VALUE_, 'Yaşınızı Öğrenebilir miyim?', 87)
+            ->addOption('yas', 'y', InputOption::VALUE_REQUIRED, 'Yaşınızı Öğrenebilir miyim?', 87)
             ;
     }
 
