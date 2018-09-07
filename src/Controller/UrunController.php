@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Urun;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,15 +52,12 @@ class UrunController extends AbstractController
     }
 
     /**
-     * @Route("/urunler/{id}", name="urun_show")
+     * @Route("/urunler/{slug}", name="urun_show")
      * @return Response
+     * @ParamConverter("urun", options={"mapping" : {"slug": "comment_slug"}})
      */
-    public function show($id)
+    public function show(Urun $urun)
     {
-        $urunRepository = $this->getDoctrine()->getRepository(Urun::class);
-
-        $urun = $urunRepository->find($id);
-
         return new Response(sprintf('Urun başarı alındı Id: %s', $urun->getId()));
     }
 
