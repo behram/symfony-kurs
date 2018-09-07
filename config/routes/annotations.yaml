@@ -1,3 +1,7 @@
 controllers:
     resource: ../../src/Controller/
     type: annotation
+
+test-bundle-controller:
+    resource: ../../src/Behram/TestBundle/Controller/
+    type: annotation
