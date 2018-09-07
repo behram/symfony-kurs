@@ -41,6 +41,11 @@ class Urun
      */
     private $performans;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $ozelFiyat;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -110,6 +115,18 @@ class Urun
     public function setPerformans(?int $performans): int
     {
         $this->performans = $performans;
+
+        return $this;
+    }
+
+    public function getOzelFiyat(): ?bool
+    {
+        return $this->ozelFiyat;
+    }
+
+    public function setOzelFiyat(?bool $ozelFiyat): self
+    {
+        $this->ozelFiyat = $ozelFiyat;
 
         return $this;
     }
