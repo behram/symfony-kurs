@@ -14,6 +14,6 @@ class BundleTestController extends Controller
      */
     public function merhaba()
     {
-        return new Response('Merhaba Ben Test Bundle');
+        return $this->render('@BehramTest/Merhaba/index.html.twig');
     }
 }
