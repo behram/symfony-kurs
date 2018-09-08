@@ -112,7 +112,7 @@ class Urun
      *
      * @return $this
      */
-    public function setPerformans(?int $performans): int
+    public function setPerformans(?int $performans): self
     {
         $this->performans = $performans;
 
