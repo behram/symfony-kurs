@@ -19,32 +19,14 @@ class UrunRepository extends ServiceEntityRepository
         parent::__construct($registry, Urun::class);
     }
 
-//    /**
-//     * @return Urun[] Returns an array of Urun objects
-//     */
-    /*
-    public function findByExampleField($value)
+    public function findAllGreateThan(int $fiyat)
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $qb = $this->createQueryBuilder('u')
+            ->andWhere('u.fiyat > :fiyat')
+            ->setParameter('fiyat', $fiyat)
+            ->orderBy('u.fiyat', 'ASC')
+            ->getQuery();
 
-    /*
-    public function findOneBySomeField($value): ?Urun
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $qb->execute();
     }
-    */
 }
