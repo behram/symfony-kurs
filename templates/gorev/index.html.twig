@@ -4,7 +4,12 @@
 {% block body %}
 
     {% for gorev in gorevler %}
-        {{ gorev.gorev }}<hr>
+        {{ gorev.gorev }} |
+        <form action="{{ url('gorev-sil', {id: gorev.id}) }}" method="post">
+            <input name="token" type="hidden" value="{{ csrf_token('gorev-sil') }}">
+            <button type="submit">Sil</button>
+        </form>
+        <hr>
     {% endfor %}
     <a href="{{ path('yeni_gorev') }}">Yeni Görev</a>
 {% endblock %}

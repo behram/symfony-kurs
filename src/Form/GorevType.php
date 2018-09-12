@@ -30,6 +30,8 @@ class GorevType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Gorev::class,
+            'csrf_protection' => true,
+            'csrf_field_name' => '_benim_gizli_stringim',
         ]);
     }
 }
