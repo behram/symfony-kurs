@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    {% for gorev in gorevler %}
+        {{ gorev.gorev }}<hr>
+    {% endfor %}
+    <a href="{{ path('yeni_gorev') }}">Yeni Görev</a>
+{% endblock %}
