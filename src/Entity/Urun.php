@@ -148,4 +148,9 @@ class Urun
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->isim;
+    }
 }

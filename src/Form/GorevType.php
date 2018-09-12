@@ -16,8 +16,8 @@ class GorevType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('gorev', TextType::class)
-            ->add('bitisZamani', DateType::class)
+            ->add('gorev', null)
+            ->add('bitisZamani', null)
             ->add('kullaniciSozlesmesi', CheckboxType::class, [
                 'mapped' => false,
             ])
