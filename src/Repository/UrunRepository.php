@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Kategori;
 use App\Entity\Urun;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -28,5 +29,14 @@ class UrunRepository extends ServiceEntityRepository
             ->getQuery();
 
         return $qb->execute();
+    }
+
+    public function findByCategory(Kategori $kategori)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.kategori = :kategori')
+            ->setParameter('kategori', $kategori)
+            ->getQuery()
+            ->getResult();
     }
 }

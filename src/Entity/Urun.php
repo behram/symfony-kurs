@@ -46,6 +46,12 @@ class Urun
      */
     private $ozelFiyat;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Kategori", inversedBy="urunler")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $kategori;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -127,6 +133,18 @@ class Urun
     public function setOzelFiyat(?bool $ozelFiyat): self
     {
         $this->ozelFiyat = $ozelFiyat;
+
+        return $this;
+    }
+
+    public function getKategori(): ?Kategori
+    {
+        return $this->kategori;
+    }
+
+    public function setKategori(?Kategori $kategori): self
+    {
+        $this->kategori = $kategori;
 
         return $this;
     }
