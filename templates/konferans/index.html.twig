@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    {% for konferans in konferanslar %}
+        {{ konferans.isim }}<br>
+        <a href="{{ asset('uploads/afisler/' ~ konferans.afis ) }}">Afiş</a>
+        <hr>
+    {% endfor %}
+    <a href="{{ path('yeni_konferans') }}">Yeni Konferans</a>
+{% endblock %}

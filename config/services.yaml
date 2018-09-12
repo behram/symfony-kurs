@@ -6,6 +6,7 @@
 parameters:
     locale: 'en'
     admin_email: 'editor@behram.org'
+    afis_folder: '%kernel.project_dir%/public/uploads/afisler'
 
 services:
     # default configuration for services in *this* file
