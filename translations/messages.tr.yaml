@@ -1,0 +1,2 @@
+hello.user: 'Merhaba Kullanıcı'
+Merhaba %name%: 'Hola %name%'

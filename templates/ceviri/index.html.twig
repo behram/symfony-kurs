@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ 'Merhaba %name%'|trans({"%name%":"Salim"}) }}<hr>
+    {{ '{0} hiç şeker yok :( | {1} sadece bir şeker var | ]1,29] %sayi% tane şeker var | [30,Inf[ Çok fazla şeker var :)'|transchoice(0, {'%sayi%': 0}) }}
+{% endblock %}
