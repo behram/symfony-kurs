@@ -11,7 +11,7 @@ class ResponseListener
         $response = $event->getResponse();
         $response->headers->set('Name', 'Behram');
 
-        $content = $response->getContent();
-        $response->setContent($content.'Merhaba Tuna');
+        //$content = $response->getContent();
+        //$response->setContent($content.'Merhaba Tuna');
     }
 }
