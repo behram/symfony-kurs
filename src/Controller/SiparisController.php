@@ -24,8 +24,11 @@ class SiparisController extends AbstractController
         if(empty($urun)){
             throw new NotFoundHttpException('Ürün Bulunamadı');
         }
+        $event = new SiparisEvents($urun);
         //ürünün sipariş edildiğini duyuralım
-        $dispatcher->dispatch(SiparisEvents::KAYDEDILDI, new SiparisEvents($urun));
+        $dispatcher->dispatch(SiparisEvents::KAYDEDILDI, $event);
+
+        dump($event->isPropagationStopped());
 
         return new Response(sprintf('<html><body>Ürün Siparişiniz Kaydedildi,Urun: %s</body></html>', $urun));
     }

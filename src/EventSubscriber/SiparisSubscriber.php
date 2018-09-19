@@ -31,5 +31,7 @@ class SiparisSubscriber implements EventSubscriberInterface
             ;
 
         $this->mailer->send($message);
+
+        $event->stopPropagation();
     }
 }
