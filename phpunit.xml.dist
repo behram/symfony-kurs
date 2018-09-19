@@ -22,7 +22,7 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
+        <testsuite name="Symfony Kurs">
             <directory>tests/</directory>
         </testsuite>
     </testsuites>
