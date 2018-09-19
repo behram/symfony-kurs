@@ -9,14 +9,14 @@ security:
         in_memory:
             memory:
                 users:
-                    behram:
-                        password: '$2y$12$R8s5s6iavHAW6k507qBY0ujK140thaIWvj71iePR5jkk025ORPMqC'
+                    user1:
+                        password: '$2y$12$d3zBMcWLSaAtgOH6t8nKq.Oowi/qP62TW4dHM38PgQTzaviwsvC1S'
                         roles: 'ROLE_USER'
-                    admin:
-                        password: '$2y$12$1xUfd9E6CI4gW1FIMiWb5utZmQOw55u7Lpmp/HerRLyjtLyyD4mga1'
-                        roles: 'ROLE_ADMIN'
+                    editor:
+                        password: '$2y$12$bwIXIa/sfttbF9dTQaNB1.ncH8qOKNCYDuflnljrbO0kGfge9zvge'
+                        roles: 'ROLE_EDITOR'
                     admin1:
-                        password: '$2y$12$Gz9xacWqpqEgUAhd.Ket.e98vFXi3B8t4ArjrGnwcItiU5i2Vc8eS'
+                        password: '$2y$12$OaWxinFjkB1Z1n0wVfg5WuEsZfojPHv64sLiKefqdZbOnrWqqnw8S'
                         roles: 'ROLE_ADMIN'
     firewalls:
         dev:
@@ -39,5 +39,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/admin, roles: ROLE_USER }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/editor, roles: ROLE_EDITOR }
+        - { path: ^/profile, roles: ROLE_USER }

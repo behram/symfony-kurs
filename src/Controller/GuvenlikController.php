@@ -9,7 +9,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class GuvenlikController extends Controller
 {
-
     /**
      * @return Response
      * @Route("/login", name="login")
@@ -24,5 +23,17 @@ class GuvenlikController extends Controller
             'last_username' => $sonKullaniciAdi,
             'error' => $error,
         ]);
+    }
+
+    /**
+     * @Route("/yetkiye-gore-yazi")
+     */
+    public function yetkiliTemplate()
+    {
+        // IS_AUTHENTICATED_REMEMBERED
+        // IS_AUTHENTICATED_FULLY
+        // IS_AUTHENTICATED_ANONYMOUSLY
+        //$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('security/yetki.html.twig');
     }
 }

@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Gorev;
 use App\Form\GorevType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class GorevController extends Controller
 {
@@ -44,9 +47,18 @@ class GorevController extends Controller
     /**
      * @return Response
      * @Route("/gorevler", name="gorevler")
+     * @Security("has_role('ROLE_ADMIN')")
      */
-    public function list()
+    public function list(AuthorizationCheckerInterface $authChecker)
     {
+        // 1. yöntem
+        // $this->denyAccessUnlessGranted('ROLE_USER', null, 'Buraya erişim yetkiniz bulunmamakta!');
+
+        // 2. yöntem
+        //if(false === $authChecker->isGranted('ROLE_ADMIN')){
+        //    throw new AccessDeniedException('Buraya erişim yetkiniz bulunmamakta!');
+        //}
+
         $em = $this->getDoctrine()->getManager();
         $gorevler = $em->getRepository(Gorev::class)->findAll();
 
