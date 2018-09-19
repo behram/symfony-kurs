@@ -39,3 +39,7 @@ services:
             $adminEmail: '%admin_email%'
 
     App\Service\MessageGenerator: '@mg'
+
+    App\EventListener\ResponseListener:
+        tags:
+            - {name: kernel.event_listener, event: kernel.response}
