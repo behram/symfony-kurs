@@ -20,4 +20,13 @@ class HelloController extends Controller
 
         return new Response($messageGenerator->helloMessage().'---'. $session->getName());
     }
+
+    /**
+     * @Route("/merhaba-dunya")
+     * @return Response
+     */
+    public function merhabaDunya()
+    {
+        return $this->render('hello/merhaba_dunya.html.twig');
+    }
 }
