@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        Username: {{ app.user.username }} - {{ app.user.password }}<br>
+        <a href="{{ path('logout') }}">Çıkış Yap</a>
+    {% else %}
+        Giriş Yapılmamış görünüyor. <a href="{{ path('login') }}">Giriş Yap</a>
+    {% endif %}
+{% endblock %}

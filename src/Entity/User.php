@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -19,94 +18,96 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $isim;
+    private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
-    private $username;
+    private $roles = [];
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Grup", inversedBy="users")
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
-    private $groups;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Kart", inversedBy="user", cascade={"persist", "remove"})
-     */
-    private $kart;
-
-    public function __construct()
-    {
-        $this->groups = new ArrayCollection();
-    }
+    private $password;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIsim(): ?string
+    public function getEmail(): ?string
     {
-        return $this->isim;
+        return $this->email;
     }
 
-    public function setIsim(string $isim): self
+    public function setEmail(string $email): self
     {
-        $this->isim = $isim;
-
-        return $this;
-    }
-
-    public function getUsername(): ?string
-    {
-        return $this->username;
-    }
-
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * @return Collection|Grup[]
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
      */
-    public function getGroups(): Collection
+    public function getUsername(): string
     {
-        return $this->groups;
+        return (string) $this->email;
     }
 
-    public function addGroup(Grup $group): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        if (!$this->groups->contains($group)) {
-            $this->groups[] = $group;
-        }
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function removeGroup(Grup $group): self
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
     {
-        if ($this->groups->contains($group)) {
-            $this->groups->removeElement($group);
-        }
+        return (string) $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }
 
-    public function getKart(): ?Kart
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
     {
-        return $this->kart;
+        // not needed when using the "bcrypt" algorithm in security.yaml
     }
 
-    public function setKart(?Kart $kart): self
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        $this->kart = $kart;
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

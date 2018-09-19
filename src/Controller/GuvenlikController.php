@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class GuvenlikController extends Controller
@@ -36,4 +38,55 @@ class GuvenlikController extends Controller
         //$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('security/yetki.html.twig');
     }
+
+
+    /**
+     * @Route("/user-detay")
+     */
+    public function userDetay()
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        return new Response(sprintf('Username: %s -> password: -> %s -> roller: %s',
+            $user->getUsername(),
+            $user->getPassword(),
+            implode($user->getRoles())));
+    }
+
+    /**
+     * @Route("/user-detay-servis")
+     */
+    public function userDetayServis(Security $security)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        /** @var User $user */
+        $user = $security->getUser();
+
+        return new Response(sprintf('Username: %s -> password: -> %s -> roller: %s',
+            $user->getUsername(),
+            $user->getPassword(),
+            implode($user->getRoles())));
+    }
+
+    /**
+     * @Route("/user-detay-template")
+     */
+    public function userDetayTemplate()
+    {
+        return $this->render('security/user_detay.html.twig');
+    }
+
+    /**
+     * @Route("/role-hierarchy")
+     */
+    public function roleHierarchy()
+    {
+        return $this->render('security/hierarchy.html.twig');
+    }
+
+
 }

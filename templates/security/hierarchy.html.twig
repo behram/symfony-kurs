@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <b>Bu yazıyı her kullanıcı görebilir</b><br>
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <b>Bu yazıyı sadece süper admin görür</b><br>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <b>Bu yazıyı sadece admin görür</b><br>
+    {% endif %}
+    {% if is_granted('ROLE_EDITOR') %}
+        <b>Bu yazıyı sadece editör görür</b><br>
+    {% endif %}
+    {% if is_granted('ROLE_USER') %}
+        <b>Bu yazıyı sadece user görür</b><br>
+    {% endif %}
+    <a href="{{ path('login') }}">Giriş Yap</a><br>
+    <a href="{{ path('logout') }}">Çıkış Yap</a>
+
+{% endblock %}

@@ -1,23 +1,24 @@
 security:
+    role_hierarchy:
+        ROLE_EDITOR: ROLE_USER
+        ROLE_ADMIN: ROLE_EDITOR
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
     encoders:
         Symfony\Component\Security\Core\User\User:
             algorithm: bcrypt
             cost: 12
+        App\Entity\User:
+            algorithm: bcrypt
+
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory:
-                users:
-                    user1:
-                        password: '$2y$12$d3zBMcWLSaAtgOH6t8nKq.Oowi/qP62TW4dHM38PgQTzaviwsvC1S'
-                        roles: 'ROLE_USER'
-                    editor:
-                        password: '$2y$12$bwIXIa/sfttbF9dTQaNB1.ncH8qOKNCYDuflnljrbO0kGfge9zvge'
-                        roles: 'ROLE_EDITOR'
-                    admin1:
-                        password: '$2y$12$OaWxinFjkB1Z1n0wVfg5WuEsZfojPHv64sLiKefqdZbOnrWqqnw8S'
-                        roles: 'ROLE_ADMIN'
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -27,6 +28,9 @@ security:
             form_login:
                 login_path: login
                 check_path: login
+            logout:
+                path: /cikis-yap
+                target: /
 
             # activate different ways to authenticate
 
