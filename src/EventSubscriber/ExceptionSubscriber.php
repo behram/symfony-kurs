@@ -21,16 +21,16 @@ class ExceptionSubscriber implements EventSubscriberInterface
 
     public function processException(GetResponseForExceptionEvent $event)
     {
-        dump('process exception');
+        //dump('process exception');
     }
 
     public function logException(GetResponseForExceptionEvent $event)
     {
-        dump('log exception');
+        //dump('log exception');
     }
 
     public function notifyException(GetResponseForExceptionEvent $event)
     {
-        dump('notify exception');
+        //dump('notify exception');
     }
 }
